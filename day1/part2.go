@@ -3,28 +3,24 @@ package day1
 import (
 	"AdventofCode2024/utiles"
 	"fmt"
-	"sort"
 )
 
-func Part1() {
-
+func Part2() {
 	scanner, err := utiles.ReturnScanner("day1/input.txt")
 	if err != nil {
 		fmt.Println(err)
 	}
 	leftArray, rightArray := parser(scanner)
-	sort.Ints(leftArray)
-	sort.Ints(rightArray)
+	apparancesMap := make(map[int]int)
+	for _, num := range rightArray {
+		apparancesMap[num]++
 
+	}
 	result := 0
-	temp := 0
-	for index := range leftArray {
-		temp = leftArray[index] - rightArray[index]
-		if temp < 0 {
-			temp = temp * -1
+	for _, num := range leftArray {
+		if _, exist := apparancesMap[num]; exist {
+			result += num * apparancesMap[num]
 		}
-		result += temp
-
 	}
 	fmt.Println(result)
 
