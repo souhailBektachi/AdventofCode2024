@@ -6,7 +6,8 @@ import (
 )
 
 func Part2() {
-	scanner, err := utiles.ReturnScanner("day1/input.txt")
+	scanner, err, file := utiles.ReturnScanner("day1/input.txt")
+	defer file.Close()
 	if err != nil {
 		fmt.Println(err)
 	}
