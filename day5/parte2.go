@@ -41,20 +41,19 @@ func CheckIfUncorect(line []int, index int, num int) bool {
 }
 
 func fixUncorectLines(uncorrectLines [][]int) {
-	for _, line := range uncorrectLines {
+	for i, line := range uncorrectLines {
 		size := len(line)
-		for index := 0; index < size; index++ {
+		swapped := true
 
-			for i := index + 1; i < size; i++ {
-
-				if _, exist := pageOrdering[line[index]][line[i]]; exist {
-					line[index], line[i] = line[i], line[index]
-
-					index = 0
+		for swapped {
+			swapped = false
+			for j := 0; j < size-1; j++ {
+				if _, exists := pageOrdering[line[j+1]][line[j]]; exists {
+					line[j], line[j+1] = line[j+1], line[j]
+					swapped = true
 				}
-
 			}
 		}
-
+		uncorrectLines[i] = line
 	}
 }
