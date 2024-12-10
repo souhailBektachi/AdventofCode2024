@@ -29,3 +29,8 @@ func Timer(name string) func() {
 		fmt.Printf("%s took %v\n", name, time.Since(start))
 	}
 }
+
+type Position struct {
+	X int
+	Y int
+}
