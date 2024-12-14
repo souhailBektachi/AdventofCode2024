@@ -19,10 +19,15 @@ func Part12() {
 
 }
 
-var Stones map[string]int = make(map[string]int)
+var Stones map[cachedStone]int = make(map[cachedStone]int)
+
+type cachedStone struct {
+	index int
+	stone string
+}
 
 func Blinc(index int, stone string) int {
-	key := fmt.Sprintf("%d-%s", index, stone)
+	key := cachedStone{index: index, stone: stone}
 	if val, exist := Stones[key]; exist {
 		return val
 	}
@@ -46,10 +51,6 @@ func Blinc(index int, stone string) int {
 
 	Stones[key] = result
 	return result
-}
-
-func clearStones() {
-	Stones = make(map[string]int)
 }
 
 func removeZero(value string) string {
