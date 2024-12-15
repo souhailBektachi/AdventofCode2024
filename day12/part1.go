@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-var garden = parser("day12/example.txt")
+var garden = parser("day12/input.txt")
 var per int
 
 func Part1() {
